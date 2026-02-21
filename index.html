@@ -88,12 +88,14 @@
             outline: none;
         }
 
-        .btn-download {
+        .btn-download, .btn-toggle {
             width: 100%; padding: 6px; background: transparent; border: 1px solid var(--cyber-pink);
             border-radius: 4px; color: var(--cyber-pink); font-weight: bold; cursor: pointer; 
             font-size: 9px; margin-top: 5px; font-family: 'Orbitron', sans-serif;
             transition: 0.3s;
         }
+
+        .btn-toggle { border-color: var(--cyber-blue); color: var(--cyber-blue); }
 
         .preview-section {
             display: flex;
@@ -103,14 +105,13 @@
             padding-bottom: 30px;
         }
 
-        /* CARD DENGAN BG KUNING 1% (HAMPIR PUTIH) */
         .receipt-card {
             font-family: 'BCASansCustom', Arial, sans-serif; 
-            background-color: #fffefb; /* Kuning 1% */
-            width: 260px;
-            height: 320px;
+            background-color: #fffefb; 
+            width: 220px;
+            min-height: auto; 
             color: var(--bca-blue-soft);
-            padding: 18px 15px 25px 15px; 
+            padding: 12px 12px 10px 12px;
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
@@ -129,8 +130,9 @@
         }
 
         .text-content { position: relative; z-index: 2; flex-grow: 1; }
+        
         .text-row { 
-            font-size: 10px;
+            font-size: 7.5px;
             line-height: 1.25; 
             margin: 0; 
             font-weight: 500; 
@@ -141,48 +143,51 @@
         
         .blue-shape { 
             display: inline-block; 
-            width: 90px; 
-            height: 11px; 
+            width: 70px; 
+            height: 9px; 
             background-color: #000000; 
             margin-left: 2px; 
             border-radius: 50px; 
             vertical-align: middle;
         }
+
+        .hidden { display: none !important; }
         
         .uppercase { text-transform: uppercase; }
-        .mb-space { margin-bottom: 10px; }
+        .mb-space { margin-bottom: 5px; } 
+        
+        .small-info { font-size: 7px; line-height: 1.2; margin-top: 1px; }
 
         .nav-bottom {
             position: relative;
-            margin-top: auto; 
-            margin-bottom: 15px; /* Sedikit naik lagi untuk memastikan tidak turun saat save */
+            margin-top: 8px; 
             display: flex; 
             align-items: center; 
-            gap: 6px; 
+            gap: 5px; 
             z-index: 3;
             width: 100%;
         }
 
         .icon-circle {
-            width: 32px; height: 32px; border: 1.2px solid var(--bca-blue-soft);
+            width: 26px; height: 26px; border: 1.2px solid var(--bca-blue-soft);
             border-radius: 50%; display: flex; justify-content: center; align-items: center;
             background: white;
         }
         
-        .icon-circle svg { width: 15px; height: 15px; fill: var(--bca-blue-soft); }
+        .icon-circle svg { width: 12px; height: 12px; fill: var(--bca-blue-soft); }
         
         .btn-ok {
             font-family: 'BCASansCustom', sans-serif;
             flex-grow: 1; 
             background: var(--bca-gradient); 
             color: white;
-            height: 34px; 
+            height: 28px; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            border-radius: 6px; 
+            border-radius: 5px; 
             font-weight: 500; 
-            font-size: 14px;
+            font-size: 11px;
             line-height: 1;
         }
     </style>
@@ -200,35 +205,42 @@
         <div class="input-group"><label>TARGET NAME</label><input type="text" id="in1_nama" value="PANGESTU PANGAREP"></div>
         <div class="input-group"><label>AMOUNT</label><input type="text" id="in1_nom" placeholder="200000"></div>
         <div class="input-group"><label>SENDER</label><input type="text" id="in1_dari" value="Bayu Kurniawan"></div>
+        <button class="btn-toggle" onclick="toggleShape('shape1')">HIDE/SHOW SHAPE</button>
         <button class="btn-download" onclick="download('ss-bca')">EXPORT DATA [1]</button>
     </div>
 
     <div class="panel-editor">
         <h3>Cyber Session [B]</h3>
-        <div class="input-group"><label>TIMELINE</label><input type="text" id="in2_date"></div>
+        <div class="input-group"><label>TIMELINE</label><input type="text" id="in2_date" value="21/02/2026 02:02:13"></div>
         <div class="input-group">
-            <label>SELECT BANK</label>
+            <label>SELECT DESTINATION</label>
             <select id="in2_bank">
                 <option value="BRI">BRI</option>
                 <option value="BNI">BNI</option>
                 <option value="MANDIRI">MANDIRI</option>
+                <option value="BSI">BSI</option>
+                <option value="BTN">BTN</option>
                 <option value="DANAMON">DANAMON</option>
                 <option value="CIMB NIAGA">CIMB NIAGA</option>
                 <option value="PERMATA">PERMATA</option>
-                <option value="BTN">BTN</option>
-                <option value="BSI">BSI</option>
-                <option value="BJB">BJB</option>
                 <option value="MAYBANK">MAYBANK</option>
                 <option value="PANIN">PANIN</option>
                 <option value="OCBC NISP">OCBC NISP</option>
-                <option value="DBS">DBS INDONESIA</option>
-                <option value="HSBC">HSBC</option>
-                <option value="UOB">UOB INDONESIA</option>
+                <option value="BCA DIGITAL">BCA DIGITAL (blu)</option>
+                <option value="BANK JAGO">BANK JAGO</option>
+                <option value="ALOBANK">ALOBANK</option>
+                <option value="SEABANK">SEABANK</option>
+                <option value="BANK NEO COMMERCE">BANK NEO COMMERCE</option>
+                <option value="BANK DKI">BANK DKI</option>
+                <option value="DANA">DANA (E-Wallet)</option>
+                <option value="OVO">OVO (E-Wallet)</option>
+                <option value="GOPAY">GOPAY (E-Wallet)</option>
             </select>
         </div>
-        <div class="input-group"><label>TARGET NAME</label><input type="text" id="in2_nama" value="RATIH MERLINA"></div>
+        <div class="input-group"><label>TARGET NAME</label><input type="text" id="in2_nama" value="BAYU KURNIAWAN"></div>
         <div class="input-group"><label>AMOUNT</label><input type="text" id="in2_nom" value="1000000"></div>
-        <div class="input-group"><label>SENDER</label><input type="text" id="in2_dari" value="cidukan dubai"></div>
+        <div class="input-group"><label>SENDER</label><input type="text" id="in2_dari" value="CIDUKAN DUBAI"></div>
+        <button class="btn-toggle" onclick="toggleShape('shape2')">HIDE/SHOW SHAPE</button>
         <button class="btn-download" onclick="download('ss-antar')">EXPORT DATA [2]</button>
     </div>
 </div>
@@ -255,18 +267,25 @@
     <div id="ss-antar" class="receipt-card">
         <img src="watermark.png" class="wm-overlay">
         <div class="text-content">
-            <p class="text-row">m-Transfer:</p>
+            <p class="text-row">m-TRANSFER:</p>
             <p class="text-row uppercase">BERHASIL</p>
-            <p id="out2_date" class="text-row mb-space">--/--/---- --:--:--</p>
+            <p id="out2_date" class="text-row mb-space">21/02/2026 02:02:13</p>
+            
             <p class="text-row uppercase">KE REKENING TUJUAN</p>
             <p class="text-row uppercase"><span id="out2_bank">BRI</span><span id="shape2" class="blue-shape"></span></p>
-            <p id="out2_nama" class="text-row mb-space uppercase">RATIH MERLINA</p>
+            <p id="out2_nama" class="text-row mb-space uppercase">BAYU KURNIAWAN</p>
+            
             <p class="text-row uppercase">NOMINAL TRANSFER Rp&nbsp;<span id="out2_nom">1.000.000,00</span></p>
             <p class="text-row uppercase">BIAYA Rp&nbsp;2.500,00</p>
             <p class="text-row uppercase">LAYANAN BI FAST</p>
-            <p class="text-row">BERITA dari&nbsp;<span id="out2_dari">cidukan dubai</span></p>
+            <p class="text-row">BERITA dari&nbsp;<span id="out2_dari">CIDUKAN DUBAI</span></p>
             <p class="text-row uppercase">TUJUAN TRANSAKSI INVESTASI</p>
-            <p id="out2_ref" class="text-row uppercase">REF 20260221BRI56G76R0K</p>
+            <p id="out2_ref" class="text-row uppercase mb-space">REF 20260221BRI56G76R0K</p>
+
+            <p class="text-row small-info">Biaya Termasuk PPN (Bila ada)</p>
+            <p class="text-row small-info">PT. BANK CENTRAL ASIA TBK.</p>
+            <p class="text-row small-info">MENARA BCA - JAKARTA PUSAT</p>
+            <p class="text-row small-info">NPWP : 0013084496091988</p>
         </div>
         <div class="nav-bottom">
             <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></div>
@@ -277,6 +296,11 @@
 </div>
 
 <script>
+    function toggleShape(id) {
+        const shape = document.getElementById(id);
+        shape.classList.toggle('hidden');
+    }
+
     function generateRandomRef(bankName) {
         const datePart = "20260221";
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -284,7 +308,8 @@
         for (let i = 0; i < 11; i++) {
             randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
         }
-        return `REF ${datePart}${bankName.substring(0, 3).toUpperCase()}${randomPart}`;
+        const bankPrefix = bankName.substring(0, 3).replace(/\s/g, 'X').toUpperCase();
+        return `REF ${datePart}${bankPrefix}${randomPart}`;
     }
 
     function setJakartaTime() {
@@ -303,8 +328,8 @@
         const finalTime = `${day}/${month}/${year} ${hour}:${minute}:${second}`;
         
         document.getElementById('in1_date').value = finalTime;
-        document.getElementById('in2_date').value = finalTime;
         document.getElementById('out1_date').innerText = finalTime;
+        document.getElementById('in2_date').value = finalTime;
         document.getElementById('out2_date').innerText = finalTime;
     }
 
@@ -349,6 +374,7 @@
     setupSync('in2_nom', 'out2_nom', true); 
     setupSync('in2_dari', 'out2_dari');
 
+    document.getElementById('out2_nom').innerText = formatRupiah(document.getElementById('in2_nom').value);
     refOutput.innerText = generateRandomRef(bankInput.value);
 
     function download(id) {
@@ -359,7 +385,7 @@
             useCORS: true
         }).then(canvas => {
             const link = document.createElement('a');
-            link.download = `mBCA_${id}.png`;
+            link.download = `mBCA_compact_${id}.png`;
             link.href = canvas.toDataURL('image/png');
             link.click();
         });
